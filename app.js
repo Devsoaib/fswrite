@@ -3,19 +3,17 @@ const fs = require('fs');
 
 let server = http.createServer((req, res) => {
     if (req.url == "/") {
-       fs.writeFile('demo.txt','Hi, I am soaib', function(error){
-        if (error) {
-            res.writeHead(200,{"content-type":"text/html"})
-            res.write('file write failed');
-            res.end();
-        }else{
-            res.writeHead(200,{"content-type":"text/html"})
-            res.write('file write successfully');
-            res.end();
-        }
-       })
+        fs.rename('demo.txt', 'soaib.txt', function(error){
+            if (error) {
+                res.writeHead(200, {"content-type":"text/html"});
+                res.write('File rename failed')
+            }else{
+                res.writeHead(200, {"content-type":"text/html"});
+                res.write('File rename success')
+            }
+        })
     }
 });
 
-server.listen(8080);
+server.listen(3030);
 console.log("Success");
